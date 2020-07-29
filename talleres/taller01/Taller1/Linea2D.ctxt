@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=Linea2D
-comment1.params=PI\ PF
-comment1.target=Linea2D(Punto,\ Punto)
-comment2.params=
-comment2.target=java.util.ArrayList\ puntosIntermedios()
-numComments=3
