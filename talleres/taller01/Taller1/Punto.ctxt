@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Punto
+comment1.params=x\ y
+comment1.target=Punto(double,\ double)
+comment2.params=
+comment2.target=double\ X()
+comment3.params=
+comment3.target=double\ Y()
+comment4.params=
+comment4.target=double\ radioPolar()
+comment5.params=
+comment5.target=double\ anguloPolar()
+comment6.params=otro
+comment6.target=double\ distanciaEuclidiana(Punto)
+numComments=7
