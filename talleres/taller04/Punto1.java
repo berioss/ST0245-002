@@ -1,20 +1,22 @@
+
 public class Punto1
 {
-    public static int maximo(int[] a, int indice){
-        if(indice == 1)
-            return a[0];
-        else
-            return Math.max(a[indice-1], maximo(a, indice-1));// T(n) = c2 + T(n-1)
-        // T(n) = c1 + c2.n 
+    public static int maximo(int[] nums, int start){
+    	if(start == nums.length-1)//C1
+return nums[start];//T(n)=C1+C2
+    	else return Math.max(nums[start],maximo(nums,start+1));//T(n)=C3+T(n-1)
+        
     }
 
     public static void main(String[] args){
-        for(int i = 0; i < 20; i++){
-            long ti = System.currentTimeMillis();
-            int max = maximo(new int[i], new int[i].length);
-            System.out.println("El numero maximo es "+ max);
-            long tf = System.currentTimeMillis();
-            System.out.println(tf - ti);
-        }
+    	for(int i=5000;i<=5020;i++) {
+        long ti = System.currentTimeMillis();
+      	maximo(new int[i], 0);
+        long tf = System.currentTimeMillis();
+        System.out.println(tf - ti);
+    	}
+    	
     }
-}
+    }
+   
+    	
