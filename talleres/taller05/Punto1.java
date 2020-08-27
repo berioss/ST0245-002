@@ -2,9 +2,9 @@ public class Punto1
 {
     public static int[] insertionSort(int[] a, int start){
         if(start < a.length-1){// c_1
-            for(int i=0;i>0;i++){
+
             if(a[start] > a[start+1]){//c_2
-            }
+            
                 int b = a[start];//c_3
                 a[start] = a[start+1];//c_4
                 a[start+1] = b;//c_5
@@ -23,11 +23,11 @@ public class Punto1
 
 //Este algorimo no es practico para una alta cantidad de datos, ya que lo que se busca
 //con catidades enormes seria un crecimiento logaritmico, el exponencial no es adecuado 
-
+//
     public static void main(String[] args){
         for(int n = 20; n < 30; n++){
             long ti= System.currentTimeMillis();
-            insertionSort(new int[n],-1);
+            insertionSort(new int[n],0);
             long tf = System.currentTimeMillis();
             System.out.println(tf-ti);
         }
