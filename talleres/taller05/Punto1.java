@@ -19,7 +19,7 @@ public class Punto1
 //O( c_6 (2^n - 1) + c_1 2^(n - 1) ) Regla de la suma 
 //O(c_6 (2^n - 1)) Regla de la multiplicacion 
 //O(2^n - 1) Regla de la suma 
-//O(2^n)
+//O(2^n) Con n siendo el numero de elementos del arreglo
 
 //Este algorimo no es practico para una alta cantidad de datos, ya que lo que se busca
 //con catidades enormes seria un crecimiento logaritmico, el exponencial no es adecuado 
