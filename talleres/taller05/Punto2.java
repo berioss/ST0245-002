@@ -7,7 +7,9 @@ public class Punto2
         }
         return sum;//c_5
         //T(n) = c_1+ c_2 + c_5 + (c_3+c_4)n
-    }//T(n) es O(n)
+    }//T(n) es O(n) n el numero de entradas del arreglo
+    
+    //Tiene una complejidad lineal tanto con ciclos como en recurrencia. pero en ciclos resive muchas mas entradas, esto ya que en recurrencia el STACK se llena.
 
     public static void main(String[] args){
         for(int n = 1000000; n < 10000000; n += 1000000){
