@@ -50,3 +50,63 @@ public int[] fix34(int[] nums) {
 // O(C*k*2*n) regla de la multiplicacion 
 // O(k*n) en el peor de los casos k=n
 // O(n^2)
+
+
+public int[] squareUp(int n) {
+  int[] array = new int[n*n];//C
+  for(int i=0;i<n;i++){//C
+    for(int j=i;j<n;j++){//C*n
+      array[n*(j+1)-i-1]=i+1;//C*n*n
+    }
+  }
+  return array;
+}
+
+//Calculo de Complejidad
+// n es la entrada
+// ignoramos las constantes
+// O(C*n+C*n*n) Por regla de la suma
+// O(n*n*C) Por reglade la multiplicacion
+// O(n^2)
+
+
+public boolean canBalance(int[] nums) {
+  int total=0;//C
+  for(int i=0;i<nums.length;i++){//C
+    total=total+nums[i];//C*n
+  }
+  if(total%2==1)return false;//C
+  int subtotal=0;//C
+  for(int i=0;i<nums.length;i++){//C
+    subtotal=subtotal+nums[i];//C*(n-1)
+    if(subtotal==total/2)return true;//C*(n-1)
+  }
+  return false;//C
+  
+}
+
+//Calculo de Complejidad
+// n es el numero de elementos del arreglo
+// ignoramos las constantes
+// O(2*(C*(n-1))+(C*n)) Por regla de la suma
+// O(n*C) Por reglade la multiplicacion
+// O(n)
+
+public int countClumps(int[] nums) {
+  int conteo=0;//C
+  for(int i=0;i<nums.length;i++){//C
+    if((i+1)<nums.length && nums[i]==nums[i+1])conteo++;//C*n
+    while((i+1)<nums.length && nums[i]==nums[i+1]){//C*n
+      i++;//C*m
+    }
+    
+  }
+  return conteo;
+}
+
+//Calculo de Complejidad
+// n es el numero de elementos del arreglo, m es la suma de los elementos de cada grupo de numeros consecutivos de almenos 2 elementos
+// ignoramos las constantes
+// O((C*m)+(C*n)) Por regla de la suma; m<=n ya que m es un subconjunto de n
+// O(n*C) Por reglade la multiplicacion
+// O(n)
