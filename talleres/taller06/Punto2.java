@@ -4,13 +4,15 @@ public class Punto2
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         ArrayList a = new ArrayList();
-        while(true){
-            int n = sc.nextInt();
-            if(n == -1)
+        int n = sc.nextInt();
+        a.add(n);
+        for(int i = 1; i > -1; i++){
+            n = sc.nextInt();
+            if(n < 0)
                 break;
-            a.add(n);
+            a.add(a.size()-i, n);
         }
-        imprimirArr(invertir(a));
+        imprimirArr(a);
     }
 
     public static ArrayList invertir(ArrayList a){
