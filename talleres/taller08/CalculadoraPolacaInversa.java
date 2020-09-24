@@ -55,28 +55,6 @@ public class CalculadoraPolacaInversa
                 }
             }
         }
-        int num1 = memoria.peek();
-        memoria.pop();
-        int num2 = memoria.peek();
-        memoria.pop();
-        int result = 0;
-        switch(a.charAt(a.length()-1)){
-            case '+':
-            result = num2 + num1;
-            break;
-            case '-':
-            result = num2 - num1;
-            break;
-            case '*':
-            result = num2 * num1;
-            break;
-            case '/':
-            result = num2 / num1;
-            break;
-            default:
-            System.out.println("Ocurrio un error");
-        }
-        memoria.push(result);
-        return memoria;
+        return calcular(a.charAt(a.length()-1)+"", a.length(), memoria);
     }
 }
