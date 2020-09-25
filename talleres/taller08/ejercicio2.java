@@ -19,23 +19,25 @@ public class ejercicio2
         solicitudes.push(new Pedido("la14", 2));
         solicitudes.push(new Pedido("olimpica", 4));
         solicitudes.push(new Pedido("éxito", 1));
-        procesarPedidos(almacen, solicitudes);
+        System.out.print("[");
+        procesarPedidos(almacen,solicitudes);
+        System.out.print("]");
     }
 
     private static void procesarPedidos(Stack<Nevera> a, Stack<Pedido> b){
         if(a.isEmpty() || b.isEmpty())
             return;
-            
-        System.out.print("["+b.peek().nombre+"[("+a.peek().codigo+", "+
-            a.peek().marca+")");
-        a.pop();
-        if(!(b.isEmpty())){
-            for(int i = 1; i < b.peek().numero; i++){
-                System.out.print(", ("+a.peek().codigo+", "+ a.peek().marca+")");
-            }
+            // No le puse comas porque despues alargaria el codigo mucho
+        String pedidoDe = b.peek().nombre;
+        int cantidadPedidos = b.pop().numero;
+        int codigoNevera = a.peek().codigo;
+        String marcaNevera = a.pop().marca;
+        System.out.print("("+pedidoDe+", [");
+        for(int i = 0; i < cantidadPedidos; i++){
+            if(!a.isEmpty())
+                System.out.print("("+codigoNevera+", "+marcaNevera+")");
         }
-        b.pop();
-        System.out.println("]");
-        procesarPedidos(a , b);
+        System.out.println("])");
+        procesarPedidos(a,b);
     }
 }
