@@ -27,16 +27,18 @@ public class ejercicio2
     private static void procesarPedidos(Stack<Nevera> a, Stack<Pedido> b){
         if(a.isEmpty() || b.isEmpty())
             return;
-            // No le puse comas porque despues alargaria el codigo mucho
+        // Trate de usar variables con nombres mas entendibles, pero despues
+        //sale mal, me di cuenta al dia siguiente, pero ahora si funciona
         String pedidoDe = b.peek().nombre;
-        int cantidadPedidos = b.pop().numero;
-        int codigoNevera = a.peek().codigo;
-        String marcaNevera = a.pop().marca;
         System.out.print("("+pedidoDe+", [");
-        for(int i = 0; i < cantidadPedidos; i++){
-            if(!a.isEmpty())
-                System.out.print("("+codigoNevera+", "+marcaNevera+")");
+        for(int i = 0; i < b.peek().numero; i++){
+            if(!a.isEmpty()){
+                System.out.print("("+a.peek().codigo+", "+
+                a.peek().marca+")");
+                a.pop();
+            }
         }
+        b.pop();
         System.out.println("])");
         procesarPedidos(a,b);
     }
