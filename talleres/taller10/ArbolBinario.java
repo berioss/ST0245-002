@@ -27,17 +27,18 @@ public class ArbolBinario {
 			}
 		}
 		insertarAux(nuevo, temp);
+		return;
 	}
 
-	public int buscar(String cadena) {
+	public boolean buscar(String cadena) {
 		return buscarAux(cadena, raiz);
 	}
 
-	public int buscarAux(String cadena, Node base) {
+	public boolean buscarAux(String cadena, Node base) {
 		if (base == null)
-			return -1;
+			return false;
 		if (base.caja.abrir(cadena) != 0)
-			return base.caja.value;
+			return true;
 		if ((valorString(base.caja.key)) < (valorString(cadena)))
 			return buscarAux(cadena, base.derecha);
 		else
