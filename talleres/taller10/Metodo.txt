@@ -1,0 +1,30 @@
+public void print(Node node){
+        if(node.left == null && node.right == null){
+        }
+        else if(node.left == null){
+            System.out.print("\""+node.data+"\"");
+            System.out.print(" -> ");
+            System.out.print("\""+node.left.data+"\"");
+            System.out.println();
+            print(node.left);
+        }
+        else if(node.right == null){
+            System.out.print("\""+node.data+"\"");
+            System.out.print(" -> ");
+            System.out.print("\""+node.right.data+"\"");
+            System.out.println();
+            print(node.right);
+        }
+        else{
+            System.out.print("\""+node.data+"\"");
+            System.out.print(" -> ");
+            System.out.print("\""+node.right.data+"\"");
+            System.out.println();
+            print(node.right);
+            System.out.print("\""+node.data+"\"");
+            System.out.print(" -> ");
+            System.out.print("\""+node.left.data+"\"");
+            System.out.println();
+            print(node.left);
+        }
+    }
