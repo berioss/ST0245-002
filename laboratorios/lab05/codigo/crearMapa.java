@@ -24,8 +24,8 @@ public class crearMapa{
 
                 scan = new Scanner(bfRead);
                 int id=scan.nextInt(); 
-                double x=scan.nextDouble();
-                double y=scan.nextDouble();
+                double x=Float.parseFloat(scan.next());
+                double y=Float.parseFloat(scan.next());
                 String nombre=scan.nextLine();
                 Punto pun = new Punto(id, x, y,nombre);
                 puntos.add(pun);

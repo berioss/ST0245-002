@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Punto01 {
 
-	static mapa mapa = crearMapa.main("C:\\Users\\57322\\Downloads\\dataa.txt");
+	static mapa mapa = crearMapa.main("C:\\Users\\57322\\Downloads\\daticos.txt");
 	static LinkedList<Stack<Integer>> carros;
 	static ArrayList<Integer> visitados;
 
@@ -86,6 +86,7 @@ public class Punto01 {
 			if (numero == visitados.get(i))
 				return false;
 		}
+		
 		return true;
 	}
 
