@@ -4,55 +4,38 @@ import java.util.ArrayList;
 
 public class leedor {
 	
-	public static ArrayList principal(String direccionArchivo) {
-		ArrayList<String[]> array = new ArrayList<>();
-		leedor l = new leedor();
-		String a = l.leer(direccionArchivo);
-		l.guardar(a, array);
-		return array;
+	public static ArrayList<String[]> principal(String direccionArchivo) {
+		return leer(direccionArchivo);
 	}
 
-	private static String leer(String direccion) {
-		String texto = "";
+	private static ArrayList<String[]> leer(String direccion) {
+		ArrayList<String[]> array= new ArrayList<>();
 		try {
 			BufferedReader bf = new BufferedReader(new FileReader(direccion));
 			String temp = "";
 			String bfRead;
 			while ((bfRead = bf.readLine()) != null) {
-				if (temp == "")
-					temp = temp + bfRead;
-
-				else
-					temp = temp + ";" + bfRead;
+				temp=bfRead;
+				String[] cadenas= new String[78];
+				int pyc=temp.indexOf(';');
+				int i=0;
+				while(pyc!=-1) {
+					cadenas[i]=temp.substring(0, pyc);
+					temp=temp.substring(pyc+1);
+					pyc=temp.indexOf(';');
+					i++;
+				}
+				cadenas[i]=temp;
+				array.add(cadenas);
 			}
-			texto = temp;
+			
 		} catch (Exception e) {
 			System.err.println("No se encuentra archivo");
 		}
-		return texto;
-	}
-
-	private static void guardar(String s, ArrayList<String[]> array) {
-		
-		int cont = 0;
-		array.add(new String[78]);
-		if (s.indexOf(";") != -1) {
-			while (s.indexOf(";") != -1) {
-				if (cont % 78 == 0 && cont != 0) {
-					array.add(new String[78]);
-
-				}
-
-				array.get((int) (cont / 78))[cont % 78] = s.substring(0, s.indexOf(";"));
-				s = s.substring(s.indexOf(";")+1, s.length());
-				cont++;
-
-			}
-		}
-		array.get((int) (cont / 78))[cont % 78] = s;
+		return array;
 	}
 
 	public static void main(String args[]) {
-		ArrayList<String[]> arr = principal("C:\\Users\\57322\\Downloads\\lite.csv");
+		ArrayList<String[]> arr = principal("C:\\Users\\57322\\Downloads\\Este.csv");
 	}
 }
