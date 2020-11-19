@@ -1,18 +1,19 @@
 
 public class Gini {
 
-	public double calcularPonderada(float nd1, float nd0, float ni1, float ni0) {
-		if((nd1+nd0)==0 || (ni1+ni0)==0)return 0.5;
-		double retorno = ((ni0 + ni1) * calcularImpureza(ni0, ni1) + (nd0 + nd1) * calcularImpureza(nd0, nd1))
-				/ (ni1 + nd0 + nd1 + ni0);
-		return retorno;
+	public static double calcularPonderada(float estudiantesID, float estudiantesII,float estudiantesDI, float estudiantesDD) {
+		if((estudiantesDD+estudiantesDI)==0 && (estudiantesII+estudiantesID)==0)return 0.5;
+		return ((estudiantesII+estudiantesID)*calcularImpureza(estudiantesII,estudiantesID)+
+				(estudiantesDD+estudiantesDI)*calcularImpureza(estudiantesDI,estudiantesDD))/(estudiantesDI+estudiantesDD+estudiantesII+estudiantesID);
 
 	}
 
-	public double calcularImpureza(float n0, float n1) {
-		double p0 = n0 / (n1 + n0);
-		double p1 = n1 / (n1 + n0);
-		double tot = 1.0 - (p0 * p0 + p1 * p1);
+	public static double calcularImpureza( float estudiantesIzquierda,float estudiantesDerecha) {
+		if((estudiantesIzquierda + estudiantesDerecha) ==0)return 0.5;
+		double proporcionEstudiantesDerecha = estudiantesDerecha / (estudiantesIzquierda + estudiantesDerecha);
+		double proporcionEstudiantesIzquierda = estudiantesIzquierda / (estudiantesIzquierda + estudiantesDerecha);
+		double tot = 1.0 - (proporcionEstudiantesDerecha * proporcionEstudiantesDerecha + 
+				proporcionEstudiantesIzquierda * proporcionEstudiantesIzquierda);
 		return tot;
 
 	}

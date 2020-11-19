@@ -2,71 +2,71 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class MejorPregunta {
-	
-	public static double[] BQ(ArrayList<String[]> arreglo,int inicio, int fin,LinkedList<Integer[]> visitados) {
+
+	public static double[] BQ(ArrayList<String[]> estudiantes,int inicio, int fin,ArrayList<Integer[]> visitados) {
 		double[] mejor= {0,0,100};
+		if(estudiantes.size()==0)return mejor;
 		for(int i= inicio;i<fin;i++) {
-			double[] temp=sacarMejorPregunta( arreglo, i, 0, 100);
+			double[] temp=sacarMejorPregunta( estudiantes, i, 30, 90); //Sacomos la mejor pregunta de esta fila
 			
-			if(mejor[2]>temp[1] && comparar(i,temp[0],visitados)) {
+			
+			if(mejor[2]>temp[1] && comparar(i,temp[0],visitados)) {//Comparamos la que tenemos y la de ahora
 				
 				mejor[0]=i;
 				mejor[1]=temp[0];
 				mejor[2]=temp[1];
 			}
 			
-				
+			
 			
 		}
-		Integer[] s={(int) mejor[0],(int) mejor[1]};
-		visitados.add(s);
+		
+		
 		return mejor;
 		
 	}
-	
-	private static boolean comparar(int a,double temp, LinkedList<Integer[]> visitados) {
-		for(Integer[] n:visitados) {
-			if(n[0]==a && n[1]==temp)return false;
+
+	private static boolean comparar(int a, double temp, ArrayList<Integer[]> visitados) {
+		for (Integer[] n : visitados) {
+			if (n[0] == a && n[1] == temp)
+				return false;
 		}
 		return true;
 	}
 
-	public static double[] sacarMejorPregunta(ArrayList<String[]> array, int pp, int ini, int fin) {
-		int mejor = ini;
+	public static double[] sacarMejorPregunta(ArrayList<String[]> estudiantes, int casillaPregunta, int ini, int fin) {
+		int mejorPregunta = ini;
 
-		for (int i = 1; i < fin - ini; i++) {
-			double d1 = sacarGuini(array, pp, ini+i);
-			double d2 = sacarGuini(array, pp, mejor);
-
-			mejor = d1 < d2 ? ini + i : mejor;
+		for (int i = ini+1; i < fin ; i++) {
+			mejorPregunta = sacarGuini(estudiantes, casillaPregunta, i) < sacarGuini(estudiantes, casillaPregunta, mejorPregunta) ?  i : mejorPregunta;
 
 		}
-		
-		double[] elpepe= {mejor, sacarGuini(array, pp, mejor)};
+
+		double[] elpepe = { mejorPregunta, sacarGuini(estudiantes, casillaPregunta, mejorPregunta)};
 		return elpepe;
 	}
 
-	public static double sacarGuini(ArrayList<String[]> array, int pp, int np) {
-		float nd1 = 0, nd0 = 0, ni1 = 0, ni0 = 0;
+	public static double sacarGuini(ArrayList<String[]> estudiantes, int casillaPregunta, int numeroAPreguntar) {
+		float estudiantesII = 0, estudiantesID = 0, estudiantesDI = 0, estudiantesDD = 0;
 
-		for (int i = 1; i < array.size(); i++) {
-			String s1 = array.get(i)[pp-1];
-			String temp = Float.parseFloat(s1) >= np ? "1" : "0";
-			String temp2 = array.get(i)[array.get(i).length - 1];
+		for (int i = 1; i < estudiantes.size(); i++) {
+			String s1 = estudiantes.get(i)[casillaPregunta - 1];
+			String temp = Float.parseFloat(s1) >= numeroAPreguntar ? "1" : "0";
+			String temp2 = estudiantes.get(i)[estudiantes.get(i).length - 1];
 			if (temp.equals("1")) {
 
 				if (temp.equals(temp2))
-					nd1++;
+					estudiantesDD++;
 				else
-					nd0++;
+					estudiantesDI++;
 			} else {
 				if (temp.equals(temp2))
-					ni1++;
+					estudiantesID++;
 				else
-					ni0++;
+					estudiantesII++;
 			}
 		}
-		Gini g = new Gini();
-		return g.calcularPonderada(nd1, nd0, ni1, ni0);
+		return Gini.calcularPonderada(estudiantesID, estudiantesII, estudiantesDI, estudiantesDD);
+		
 	}
 }
